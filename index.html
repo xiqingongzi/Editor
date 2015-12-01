@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="gbk">
+    <title>西秦公子论坛编辑器</title>
+    <meta name="description" content="Flat UI Kit Free is a Twitter Bootstrap Framework design and Theme, this responsive framework includes a PSD and HTML version."/>
+    <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+    <link href="dist/css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="dist/css/flat-ui.css" rel="stylesheet">
+    <link href="docs/assets/css/demo.css" rel="stylesheet">
+	<script src="dist/js/vendor/jquery.min.js"></script>
+    <script src="dist/js/flat-ui.min.js"></script>
+	<link rel="stylesheet" href="minified/themes/monocons.min.css" type="text/css" media="all" />
+	<script type="text/javascript" src="minified/jquery.sceditor.bbcode.min.js"></script>
+	<script src="languages/cn.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="demo-headline">
+        <h1 class="demo-logo">
+          Editor
+          <small>西秦公子De论坛编辑器</small>
+        </h1>
+      </div>
+      <h1 class="demo-section-title">输入框</h1>
+  		<div class="row">
+	  		<textarea name="bbcode_field" style="height:600px;width:960px;"></textarea>
+	  	</div>
+	  	<h2 class="demo-panel-title">输入完成后复制代码即可</h2>
+	 
+    </div>
+
+    <footer>
+      <div class="container">
+	      
+        <div class="row">
+          <div class="col-xs-7">
+            <h3 class="footer-title">关于我</h3>
+            <p>西秦公子
+            </p>
+
+          </div>
+
+          <div class="col-xs-5">
+            <div class="footer-banner">
+              <h3 class="footer-title">我的联系方式</h3>
+              <ul>
+                <li>QQ:894849635</li>
+                <li>Email:xiqingongzi@gmail.com</li>
+              </ul>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+	<script>
+	$(function() {
+	    // Replace all textarea's
+	    // with SCEditor
+	    $("textarea").sceditor({
+	        plugins: "bbcode",
+	        autofocus:true,
+	         toolbarExclude:"youtube,print,rtl,ltr,emoticon,email,subscript,superscript",
+	         locale:"cn"
+	    });
+	});
+	</script>
+    <script src="docs/assets/js/application.js"></script>
+  </body>
+</html>
