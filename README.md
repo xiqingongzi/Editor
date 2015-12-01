@@ -7,3 +7,4 @@ Editor AmazeUI 重构版
 BBcode 编辑器
 SM.MS 图床
 Amaze UI
+Ajax 文件上传
