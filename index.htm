@@ -1,0 +1,109 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="论坛专用编辑器，自带图床">
+  <meta name="keywords" content="BBCODE,编辑器,图床">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>论坛专用编辑器</title>
+    <style type="text/css">@import url('http://cdn.amazeui.org/amazeui/2.5.0/css/amazeui.min.css');</style>
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="http://cdn.amazeui.org/amazeui/2.5.0/js/amazeui.min.js"></script>
+    <script type="text/javascript" src="http://cdn.amazeui.org/amazeui/2.5.0/js/amazeui.ie8polyfill.min.js"></script>
+    <script type="text/javascript" src="http://cdn.amazeui.org/amazeui/2.5.0/js/amazeui.widgets.helper.min.js"></script>
+	<link rel="stylesheet" href="minified/themes/monocons.min.css" type="text/css" media="all" />
+	<script type="text/javascript" src="minified/jquery.sceditor.bbcode.min.js"></script>
+	<script src="languages/cn.js"></script>
+</head>
+<body>
+<header class="am-topbar am-topbar-inverse">
+  <h1 class="am-topbar-brand">
+    <a href="http://edit.ixiqin.com">Bestony's Editor</a>
+  </h1>
+  <div class="am-topbar-right">
+	  <button class="am-btn am-btn-secondary am-topbar-btn am-btn-sm am-dropdown-toggle" data-am-dropdown-toggle="" onclick='window.location.href="https://github.com/bestony/Editor"'>GitHub</button>
+	  </div>
+</header>
+<div class="am-g">
+  <div class="am-u-lg-8">
+		<div class="am-panel am-panel-default">
+		  <div class="am-panel-hd">编辑框</div>
+		  <div class="am-panel-bd">
+		   <textarea name="bbcode_field" style="height: 600px; width: 100%; "></textarea>
+		  </div>
+		</div>
+  </div>
+  <div class="am-u-lg-4">
+	  <div class="am-panel am-panel-default">
+		  <div class="am-panel-hd">上传表单</div>
+		  <div class="am-panel-bd">
+	  <form id="uploadForm">
+          <p>上传文件： <input type="file" name="smfile">
+           <input type="button" value="上传" onclick="doUpload()">
+          </p>
+      </form>
+       </div>
+	</div>
+  </div>
+</div>
+<header class="am-topbar am-topbar-inverse am-topbar-fixed-bottom">
+  <div class="am-container">
+    <h1 class="am-topbar-brand">
+      <a href="#" class="am-text-ir">Amaze UI</a>
+    </h1>
+
+    <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only"
+            data-am-collapse="{target: '#doc-topbar-collapse-5'}"><span class="am-sr-only">导航切换</span> <span
+        class="am-icon-bars"></span></button>
+
+    <div class="am-collapse am-topbar-collapse" id="doc-topbar-collapse-5">
+      <ul class="am-nav am-nav-pills am-topbar-nav">
+        <li class="am-active"><a href="http://www.ixiqin.com">博客</a></li>
+        <li><a href="http://github.com/bestony">Github</a></li>
+        <li class="am-dropdown am-dropdown-up" data-am-dropdown>
+          <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+            项目 <span class="am-icon-caret-up"></span>
+          </a>
+          <ul class="am-dropdown-content">
+            <li><a href="http://vpsug.com">VPSUG</a></li>
+            <li><a href="http://www.ixiqin.com">西秦公子博客</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>
+<script>
+	$(function() {
+	    // Replace all textarea's
+	    // with SCEditor
+	    $("textarea").sceditor({
+	        plugins: "bbcode",
+	        autofocus:true,
+	         toolbarExclude:"youtube,print,rtl,ltr,emoticon,email,subscript,superscript",
+	         locale:"cn"
+	    });
+	});
+	function doUpload() {
+     var formData = new FormData($( "#uploadForm" )[0]);
+     $.ajax({
+          url: 'https://sm.ms/api/upload' ,
+          type: 'POST',
+          data: formData,
+          async: false,
+          cache: false,
+          contentType: false,
+          processData: false,
+          success: function (data) {
+             $('textarea').sceditor('instance').insert('[img]'+data.data.url+'[/img]');
+          },
+          error: function (returndata) {
+              alert(JSON.stringify(returndata));
+          }
+     });
+}
+</script>
+</body>
+</html>
